@@ -21,10 +21,45 @@ namespace Rabbit.Communication.Mailing
             return Send(from, new[] { to }, Enumerable.Empty<string>(), subject, body);
         }
 
+        public bool Send(KeyValuePair<string, string> from, KeyValuePair<string, string> to, string subject, string body)
+        {
+            return Send(from,
+                new Dictionary<string, string> { { to.Key, to.Value } },
+                new Dictionary<string, string>(),
+                subject,
+                body);
+        }
+
         public bool Send(string from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string body)
         {
-            var msg = BuildMailMessage(@from, to, cc, subject, body);
+            return Send(from, to, cc, Enumerable.Empty<string>(), subject, body);
+        }
 
+        public bool Send(KeyValuePair<string, string> from, IDictionary<string, string> to, IDictionary<string, string> cc, string subject, string body)
+        {
+            return Send(from, to, cc, new Dictionary<string, string>(), subject, body);
+        }
+
+        public bool Send(string from, IEnumerable<string> to, IEnumerable<string> cc, IEnumerable<string> bcc, string subject, string body)
+        {
+            var msg = new MailMessageBuilder().BuildMailMessage(@from, to, cc, bcc, subject, body);
+
+            SendMailMessage(msg);
+
+            return true;
+        }
+
+        public bool Send(KeyValuePair<string, string> from, IDictionary<string, string> to, IDictionary<string, string> cc, IDictionary<string, string> bcc, string subject, string body)
+        {
+            var msg = new MailMessageBuilder().BuildMailMessage(@from, to, cc, bcc, subject, body);
+
+            SendMailMessage(msg);
+
+            return true;
+        }
+
+        private void SendMailMessage(MailMessage msg)
+        {
             var client = new SmtpClient
             {
                 UseDefaultCredentials = false,
@@ -37,32 +72,6 @@ namespace Rabbit.Communication.Mailing
             };
 
             client.Send(msg);
-
-            return true;
-        }
-
-        private MailMessage BuildMailMessage(string @from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string body)
-        {
-            var msg = new MailMessage
-            {
-                From = new MailAddress(@from)
-            };
-
-            foreach (var address in to)
-            {
-                msg.To.Add(new MailAddress(address));
-            }
-
-            foreach (var address in cc)
-            {
-                msg.CC.Add(new MailAddress(address));
-            }
-
-            msg.Subject = subject;
-            msg.Body = body;
-            msg.IsBodyHtml = true;
-
-            return msg;
         }
     }
 }

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Rabbit.Communication</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>Rabbit.Communication</title>
     <authors>juniho</authors>
     <owners>RabbitSoftware</owners>
@@ -10,6 +10,8 @@
       Provide some services for sending emails
     </description>
     <releaseNotes>
+      Version 1.1.0
+      - Add new methods which support friendly name of sender, receiver(s)
     </releaseNotes>
     <summary>
     </summary>
