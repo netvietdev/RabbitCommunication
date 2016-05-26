@@ -8,9 +8,9 @@ namespace Rabbit.Communication.Mailing
     public class SmtpEmailService : IEmailService
     {
         private readonly NetworkCredential _credential;
-        private readonly SmtpClientParams _parameters;
+        private readonly SmtpServerParams _parameters;
 
-        public SmtpEmailService(NetworkCredential credential, SmtpClientParams parameters)
+        public SmtpEmailService(NetworkCredential credential, SmtpServerParams parameters)
         {
             _credential = credential;
             _parameters = parameters;

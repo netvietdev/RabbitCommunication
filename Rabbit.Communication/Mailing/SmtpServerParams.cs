@@ -1,22 +1,22 @@
 ﻿namespace Rabbit.Communication.Mailing
 {
-    public class SmtpClientParams
+    public class SmtpServerParams
     {
         private readonly string _host;
         private readonly int _port;
 
-        public SmtpClientParams(string host, int port)
+        public SmtpServerParams(string host, int port)
         {
             _host = host;
             _port = port;
             Timeout = 20000;
         }
 
-        public static SmtpClientParams Gmail
+        public static SmtpServerParams Gmail
         {
             get
             {
-                return new SmtpClientParams("smtp.gmail.com", 587)
+                return new SmtpServerParams("smtp.gmail.com", 587)
                 {
                     EnableSsl = true
                 };

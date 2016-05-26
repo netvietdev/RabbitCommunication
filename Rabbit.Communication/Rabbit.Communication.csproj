@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Mailing\IEmailService.cs" />
     <Compile Include="Mailing\MailMessageBuilder.cs" />
-    <Compile Include="Mailing\SmtpClientParams.cs" />
+    <Compile Include="Mailing\SmtpServerParams.cs" />
     <Compile Include="Mailing\SmtpEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
