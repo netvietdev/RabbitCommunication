@@ -5,7 +5,7 @@ namespace Rabbit.Communication.Mailing
 {
     public class MailMessageBuilder
     {
-        public MailMessage BuildMailMessage(string from, IEnumerable<string> to, IEnumerable<string> cc, IEnumerable<string> bcc, string subject, string body)
+        public MailMessage BuildMailMessage(string from, string to, string subject, string body)
         {
             var msg = new MailMessage
             {
@@ -13,20 +13,7 @@ namespace Rabbit.Communication.Mailing
             };
             msg.ReplyToList.Add(from);
 
-            foreach (var address in to)
-            {
-                msg.To.Add(new MailAddress(address));
-            }
-
-            foreach (var address in cc)
-            {
-                msg.CC.Add(new MailAddress(address));
-            }
-
-            foreach (var address in bcc)
-            {
-                msg.Bcc.Add(address);
-            }
+            msg.To.Add(new MailAddress(to));
 
             msg.Subject = subject;
             msg.Body = body;
@@ -35,7 +22,7 @@ namespace Rabbit.Communication.Mailing
             return msg;
         }
 
-        public MailMessage BuildMailMessage(KeyValuePair<string, string> from, IEnumerable<KeyValuePair<string, string>> to, IEnumerable<KeyValuePair<string, string>> cc, IEnumerable<KeyValuePair<string, string>> bcc, string subject, string body)
+        public MailMessage BuildMailMessage(KeyValuePair<string, string> from, KeyValuePair<string, string> to, string subject, string body)
         {
             var msg = new MailMessage
             {
@@ -43,20 +30,7 @@ namespace Rabbit.Communication.Mailing
             };
             msg.ReplyToList.Add(new MailAddress(from.Key, from.Value));
 
-            foreach (var address in to)
-            {
-                msg.To.Add(new MailAddress(address.Key, address.Value));
-            }
-
-            foreach (var address in cc)
-            {
-                msg.CC.Add(new MailAddress(address.Key, address.Value));
-            }
-
-            foreach (var address in bcc)
-            {
-                msg.Bcc.Add(new MailAddress(address.Key, address.Value));
-            }
+            msg.To.Add(new MailAddress(to.Key, to.Value));
 
             msg.Subject = subject;
             msg.Body = body;

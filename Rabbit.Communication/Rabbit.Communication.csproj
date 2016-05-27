@@ -33,15 +33,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mailing\IEmailService.cs" />
     <Compile Include="Mailing\MailMessageBuilder.cs" />
+    <Compile Include="Mailing\MailMessageExtensions.cs" />
     <Compile Include="Mailing\SmtpServerParams.cs" />
     <Compile Include="Mailing\SmtpEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

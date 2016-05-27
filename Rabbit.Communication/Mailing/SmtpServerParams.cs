@@ -12,6 +12,8 @@
             Timeout = 20000;
         }
 
+        #region Preconfigured servers
+
         public static SmtpServerParams Gmail
         {
             get
@@ -22,6 +24,8 @@
                 };
             }
         }
+        
+        #endregion
 
         public string Host
         {

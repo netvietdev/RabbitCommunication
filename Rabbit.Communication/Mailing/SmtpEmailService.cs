@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 
@@ -16,49 +15,19 @@ namespace Rabbit.Communication.Mailing
             _parameters = parameters;
         }
 
-        public bool Send(string from, string to, string subject, string body)
+        public void Send(string from, string to, string subject, string body)
         {
-            return Send(from, new[] { to }, Enumerable.Empty<string>(), subject, body);
+            var msg = new MailMessageBuilder().BuildMailMessage(from, to, subject, body);
+            Send(msg);
         }
 
-        public bool Send(KeyValuePair<string, string> from, KeyValuePair<string, string> to, string subject, string body)
+        public void Send(KeyValuePair<string, string> from, KeyValuePair<string, string> to, string subject, string body)
         {
-            return Send(from,
-                new Dictionary<string, string> { { to.Key, to.Value } },
-                new Dictionary<string, string>(),
-                subject,
-                body);
+            var msg = new MailMessageBuilder().BuildMailMessage(from, to, subject, body);
+            Send(msg);
         }
 
-        public bool Send(string from, IEnumerable<string> to, IEnumerable<string> cc, string subject, string body)
-        {
-            return Send(from, to, cc, Enumerable.Empty<string>(), subject, body);
-        }
-
-        public bool Send(KeyValuePair<string, string> from, IDictionary<string, string> to, IDictionary<string, string> cc, string subject, string body)
-        {
-            return Send(from, to, cc, new Dictionary<string, string>(), subject, body);
-        }
-
-        public bool Send(string from, IEnumerable<string> to, IEnumerable<string> cc, IEnumerable<string> bcc, string subject, string body)
-        {
-            var msg = new MailMessageBuilder().BuildMailMessage(@from, to, cc, bcc, subject, body);
-
-            SendMailMessage(msg);
-
-            return true;
-        }
-
-        public bool Send(KeyValuePair<string, string> from, IDictionary<string, string> to, IDictionary<string, string> cc, IDictionary<string, string> bcc, string subject, string body)
-        {
-            var msg = new MailMessageBuilder().BuildMailMessage(@from, to, cc, bcc, subject, body);
-
-            SendMailMessage(msg);
-
-            return true;
-        }
-
-        private void SendMailMessage(MailMessage msg)
+        public void Send(MailMessage message)
         {
             var client = new SmtpClient
             {
@@ -71,7 +40,7 @@ namespace Rabbit.Communication.Mailing
                 Credentials = _credential,
             };
 
-            client.Send(msg);
+            client.Send(message);
         }
     }
 }
