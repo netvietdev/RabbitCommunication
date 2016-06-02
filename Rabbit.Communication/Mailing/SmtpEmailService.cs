@@ -6,10 +6,10 @@ namespace Rabbit.Communication.Mailing
 {
     public class SmtpEmailService : IEmailService
     {
-        private readonly NetworkCredential _credential;
+        private readonly ICredentialsByHost _credential;
         private readonly SmtpServerParams _parameters;
 
-        public SmtpEmailService(NetworkCredential credential, SmtpServerParams parameters)
+        public SmtpEmailService(ICredentialsByHost credential, SmtpServerParams parameters)
         {
             _credential = credential;
             _parameters = parameters;
@@ -29,16 +29,18 @@ namespace Rabbit.Communication.Mailing
 
         public void Send(MailMessage message)
         {
-            var client = new SmtpClient
+            var client = new SmtpClient(_parameters.Host, _parameters.Port)
             {
-                UseDefaultCredentials = false,
-                Host = _parameters.Host,
-                Port = _parameters.Port,
                 EnableSsl = _parameters.EnableSsl,
                 Timeout = _parameters.Timeout,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = _credential,
             };
+
+            if (_credential != null)
+            {
+                client.UseDefaultCredentials = false;
+                client.Credentials = _credential;
+            }
 
             client.Send(message);
         }
