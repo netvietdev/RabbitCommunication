@@ -39,6 +39,7 @@
     <Compile Include="Mailing\IEmailService.cs" />
     <Compile Include="Mailing\MailMessageBuilder.cs" />
     <Compile Include="Mailing\MailMessageExtensions.cs" />
+    <Compile Include="Mailing\Constants.cs" />
     <Compile Include="Mailing\SmtpServerParams.cs" />
     <Compile Include="Mailing\SmtpEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

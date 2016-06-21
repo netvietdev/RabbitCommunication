@@ -1,6 +1,6 @@
-﻿using Rabbit.Communication.Mailing;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
+using Rabbit.Communication.Mailing;
 
 namespace MailingSample
 {
@@ -8,17 +8,24 @@ namespace MailingSample
     {
         static void Main(string[] args)
         {
-            var mailService = new SmtpEmailService(new NetworkCredential("huanhvtest@gmail.com", "hbgfuuswchzxeiyn"), SmtpServerParams.Gmail);
-            //var mailService = new SmtpEmailService(new NetworkCredential("***@gmail.com", "***"), SmtpClientParams.Gmail);
+            var mailService = CreateMailService();
+            mailService.Send("huanhvtest@gmail.com", "abc123@gmail.com", "Test Subject", "Test Body");
+        }
 
-            mailService.Send("hhoangvan@pentalog.fr", "huanhvhd@gmail.com", "Test", "Test Body");
+        static IEmailService CreateMailService()
+        {
+            //return new SmtpEmailService();
 
-            mailService.Send(new KeyValuePair<string, string>("hhoangvan@pentalog.fr", "Huan HOANG"),
-                new KeyValuePair<string, string>("huanhvhd@gmail.com", "Mr Huan"), "Test 2", "Test Body 2");
+            //return new SmtpEmailService(new NetworkCredential("huanhvtest@gmail.com", "hbgfuuswchzxeiyn"), SmtpServerParams.Gmail);
 
-            //mailService.Send(new KeyValuePair<string, string>("huanhvhd@gmail.com", "Huan HOANG"),
-            //    new KeyValuePair<string, string>("nguyenduonghanu@gmail.com", "Nguyen Duong"),
-            //    "Test 2", "Test Body 2");
+            return new SmtpEmailService(new Dictionary<string, string>()
+                {
+                    {Constants.MailHostArgument,"smtp.gmail.com"},
+                    {Constants.MailPortArgument,"587"},
+                    {Constants.MailSslArgument,"true"},
+                    {Constants.MailFromArgument,"huanhvtest@gmail.com"},
+                    {Constants.MailPasswordArgument,"hbgfuuswchzxeiyn"},
+                });
         }
     }
 }
