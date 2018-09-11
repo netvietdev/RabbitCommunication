@@ -34,11 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -48,6 +45,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Rabbit.Communication.OutlookMsg\Rabbit.Communication.MsgTransformers.csproj">
+      <Project>{01f961b3-1880-4377-b91b-e2bd0ec4d2a6}</Project>
+      <Name>Rabbit.Communication.MsgTransformers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rabbit.Communication\Rabbit.Communication.csproj">
       <Project>{D77EB5E2-2B29-44AB-B6AE-213B7D069538}</Project>
       <Name>Rabbit.Communication</Name>

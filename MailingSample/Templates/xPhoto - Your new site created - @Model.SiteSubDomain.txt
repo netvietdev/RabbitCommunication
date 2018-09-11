@@ -1,0 +1,9 @@
+Hello @Model.YourName
+
+This email is a confirmation that you have created a site in xPhoto
+
+Site ID @Model.SiteId
+Site Name @Model.SiteName
+
+Thank you,
+xPhoto Team
