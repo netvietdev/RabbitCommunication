@@ -7,9 +7,6 @@ namespace MailingSample
     {
         static void Main(string[] args)
         {
-            var mailService = CreateMailService();
-            //mailService.Send("huanhvtest@gmail.com", "abc123@gmail.com", "Test Subject", "Test Body");
-
             var msgTransformer = new TextFileMailMessageTransformer("../../Templates/xPhoto - Your new site created - @Model.SiteSubDomain.txt");
             var model = new
             {
@@ -18,7 +15,12 @@ namespace MailingSample
                 SiteId = "test",
                 SiteName = "Testing Site",
             };
+
+            var mailService = CreateMailService();
             mailService.Send("huanhvtest@gmail.com", "abc123@gmail.com", msgTransformer, model);
+
+            var msgTransform2 = new OutlookMailMessageTransformer(@"D:\Wip\Practices\Github\Rabbit.Communication\MailingSample\Templates/NewSiteTemplate.msg");
+            mailService.Send("huanhvtest@gmail.com", "abc123@gmail.com", msgTransform2, model);
         }
 
         static IEmailSenderService CreateMailService()

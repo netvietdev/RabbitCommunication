@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Rabbit.Communication.TextTemplate</id>
+    <version>1.0.0</version>
+    <title>Rabbit.Communication.TextTemplate</title>
+    <authors>hhoangvan</authors>
+    <owners></owners>
+    <description>
+      Build mail subject/body from text/cshtml file
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/netvietdev/RabbitCommunication</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <copyright>Copyright @ RabbitSoftware 2018</copyright>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Rabbit.Communication" version="1.5.0" />
+        <dependency id="RazorEngine" version="3.10.0" />
+      </group>
+    </dependencies>
+    <references></references>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>

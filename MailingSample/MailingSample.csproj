@@ -45,9 +45,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rabbit.Communication.OutlookMsg\Rabbit.Communication.MsgTransformers.csproj">
-      <Project>{01f961b3-1880-4377-b91b-e2bd0ec4d2a6}</Project>
-      <Name>Rabbit.Communication.MsgTransformers</Name>
+    <ProjectReference Include="..\Rabbit.Communication.MsgHtmlTemplate\Rabbit.Communication.MsgHtmlTemplate.csproj">
+      <Project>{2d723200-bdf4-40bd-9615-e28b7b57f8fd}</Project>
+      <Name>Rabbit.Communication.MsgHtmlTemplate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rabbit.Communication.TextTemplate\Rabbit.Communication.TextTemplate.csproj">
+      <Project>{887871F9-A3BB-46CE-B1B6-F770E6403EAB}</Project>
+      <Name>Rabbit.Communication.TextTemplate</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rabbit.Communication\Rabbit.Communication.csproj">
       <Project>{D77EB5E2-2B29-44AB-B6AE-213B7D069538}</Project>
